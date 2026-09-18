@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101411">
+  <meta name="description" content="Encuentra tu cancha, elige tu horario y arma tu próxima pichanga. Reservas deportivas en Lima, Perú.">
+  <title>Cancha — Tu próxima pichanga empieza aquí</title>
+  <link rel="icon" href="./static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./static/styles.css">
+  <script src="./static/app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="topbar">
+    <a class="brand" href="#reservar" aria-label="Cancha, inicio"><span class="brand-mark" aria-hidden="true">c.</span>cancha<span class="brand-period">.</span></a>
+    <nav aria-label="Navegación principal" id="navigation"></nav>
+    <div class="account" id="account"></div>
+  </header>
+  <div class="demo-banner"><span><strong>Demo universitaria</strong> · Tus datos se guardan solo en este navegador. Usa datos ficticios.</span><button class="text-button" id="reset-demo">Reiniciar demo</button></div>
+  <noscript>Activa JavaScript para usar esta demostración.</noscript>
+  <main id="main"><div class="loading-state">Preparando las canchas…</div></main>
+  <footer class="site-footer"><a class="brand small" href="#reservar">cancha<span class="brand-period">.</span></a><span>Hecho para quienes siempre quieren jugar.</span><span>Lima, Perú <span aria-hidden="true">🇵🇪</span> · Precios en soles</span></footer>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
+</body>
+</html>
+
