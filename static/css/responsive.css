@@ -1,0 +1,449 @@
+@media (min-width:1500px) {
+  .topbar {
+    padding-right: calc((100vw - 1216px)/2);
+    padding-left: calc((100vw - 1216px)/2);
+  }
+}
+
+@media(max-width:1050px) {
+  .topbar {
+    padding: 0 24px;
+    gap: 20px;
+  }
+  .topbar nav {
+    gap: 20px;
+  }
+  .topbar .brand {
+    font-size: 1.5rem;
+  }
+  .account {
+    gap: 8px;
+  }
+  .booking-workspace {
+    gap: 22px;
+    grid-template-columns: minmax(0,1.6fr) minmax(290px,1fr);
+  }
+  .summary-panel {
+    padding: 22px;
+  }
+  .week-strip {
+    gap: 5px;
+    grid-template-columns: 44px repeat(7,minmax(44px,1fr)) 44px;
+  }
+  .court-option {
+    padding: 14px;
+    gap: 10px;
+  }
+  .court-option-icon {
+    display: none;
+  }
+  .reservation-actions .button-row {
+    max-width: 270px;
+  }
+  .admin-courts {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:820px) {
+  .topbar {
+    flex-wrap: wrap;
+    padding: 18px 24px 0;
+    gap: 10px;
+  }
+  .topbar nav {
+    order: 3;
+    width: 100%;
+    min-height: 46px;
+    gap: 18px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    overscroll-behavior-inline: contain;
+  }
+  .account {
+    margin-left: auto;
+  }
+  .topbar nav a {
+    flex: 0 0 auto;
+    padding-inline: 4px;
+    outline-offset: -3px;
+  }
+  .booking-workspace {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .booking-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(200px,.7fr);
+    gap: 15px;
+  }
+  .booking-policies {
+    padding: 24px 10px;
+  }
+  .summary-panel {
+    padding: 24px;
+  }
+  .court-option-icon {
+    display: grid;
+  }
+  .court-banner {
+    min-height: 215px;
+  }
+  .reservation-card {
+    flex-wrap: wrap;
+  }
+  .reservation-actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 15px;
+    align-items: center;
+  }
+  .reservation-actions .button-row {
+    max-width: none;
+  }
+  .stats-grid {
+    gap: 12px;
+  }
+  .stats-grid>div {
+    padding: 18px;
+  }
+  .stats-grid strong {
+    font-size: 1.6rem;
+  }
+}
+
+@media(max-width:560px) {
+  :root {
+    font-size: 16px;
+  }
+  main {
+    padding: 26px 18px 44px;
+  }
+  .topbar {
+    padding: 14px 18px 0;
+  }
+  .topbar nav {
+    gap: 12px;
+  }
+  .topbar nav a {
+    font-size: .8125rem;
+  }
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    font-size: 1.45rem;
+    margin-right: 7px;
+  }
+  .account {
+    max-width: calc(100% - 112px);
+  }
+  .account .button {
+    padding: 7px 12px;
+  }
+  .account .profile-button {
+    font-size: .8125rem;
+    min-width: 0;
+  }
+  .account .text-button {
+    font-size: .75rem;
+  }
+  .page-heading {
+    align-items: flex-start;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+  }
+  .page-heading h1 {
+    letter-spacing: -1px;
+  }
+  .page-heading p {
+    font-size: .875rem;
+  }
+  .page-heading .eyebrow {
+    font-size: .68rem;
+  }
+  .location-chip {
+    padding: 5px 10px;
+    font-size: .75rem;
+  }
+  .court-banner {
+    min-height: 220px;
+    padding: 25px 22px;
+    background-position: 65% 60%;
+  }
+  .court-banner:before {
+    background: linear-gradient(90deg,#08150feb,#14271bc9 65%,#14271b55);
+  }
+  .banner-copy h2 {
+    font-size: 1.75rem;
+    margin: 12px 0 18px;
+  }
+  .overline {
+    font-size: .62rem;
+    letter-spacing: 1.4px;
+  }
+  .banner-detail {
+    font-size: .7rem;
+    gap: 6px;
+  }
+  .banner-separator {
+    margin: 0;
+  }
+  .booking-workspace {
+    margin-top: 28px;
+    gap: 25px;
+  }
+  .section-heading {
+    gap: 10px;
+  }
+  .section-heading h2 {
+    font-size: 1.05rem;
+  }
+  .section-heading .small-text {
+    font-size: .75rem;
+  }
+  .step {
+    width: 25px;
+    height: 25px;
+    font-size: .7rem;
+  }
+  .sport-tabs button {
+    padding: 7px 14px;
+    font-size: .8125rem;
+  }
+  .court-option {
+    padding: 14px;
+    gap: 10px;
+  }
+  .court-option-icon {
+    display: none;
+  }
+  .court-option-info>span {
+    font-size: .75rem;
+  }
+  .court-option-info strong {
+    font-size: .9375rem;
+  }
+  .court-option-price strong {
+    font-size: .9375rem;
+  }
+  .calendar-section {
+    margin-top: 28px;
+  }
+  .calendar-section .section-heading {
+    align-items: flex-start;
+  }
+  .date-picker {
+    gap: 5px;
+  }
+  .date-picker input {
+    font-size: .75rem;
+    max-width: 135px;
+  }
+  .week-strip {
+    gap: 6px 2px;
+    grid-template-columns: repeat(7,minmax(44px,1fr));
+    margin-inline: -8px;
+    padding-block: 4px;
+    overflow-x: auto;
+  }
+  .week-strip button:focus-visible {
+    outline-offset: -3px;
+  }
+  .week-strip .day.selected:focus-visible {
+    outline-color: var(--ink);
+  }
+  #next-week {
+    grid-column: 7;
+  }
+  .day {
+    grid-row: 2;
+  }
+  .day {
+    border-radius: 7px;
+    padding: 8px 0 6px;
+  }
+  .day>span {
+    font-size: .67rem;
+  }
+  .day strong {
+    font-size: 1.15rem;
+  }
+  .day small {
+    font-size: .6rem;
+  }
+  .slots-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 7px;
+  }
+  .time-slot small {
+    font-size: .6rem;
+  }
+  .booking-sidebar {
+    display: block;
+  }
+  .booking-policies {
+    padding: 24px 14px 0;
+  }
+  .site-footer {
+    padding: 24px 18px;
+    gap: 12px;
+  }
+  .site-footer>span {
+    width: 100%;
+  }
+  .site-footer .brand {
+    margin-bottom: 4px;
+  }
+  .summary-panel {
+    padding: 22px;
+  }
+  .summary-panel .button {
+    font-size: .875rem;
+  }
+  .reservation-card {
+    padding: 17px;
+    gap: 14px;
+  }
+  .reservation-icon {
+    display: none;
+  }
+  .reservation-actions {
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .reservation-actions .button-row {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .reservation-info h3 {
+    font-size: 1.1rem;
+  }
+  .notification-card {
+    padding: 18px;
+    gap: 12px;
+  }
+  .notification-card .message-logo {
+    width: 30px;
+    height: 30px;
+  }
+  .notification-card p {
+    font-size: .875rem;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+  }
+  .stats-grid span {
+    max-width: 170px;
+  }
+  .stats-grid strong {
+    font-size: 1.7rem;
+  }
+  .admin-tabs {
+    gap: 4px;
+  }
+  .admin-tabs button {
+    font-size: .8125rem;
+    padding: 8px 10px;
+  }
+  .client-grid,.admin-courts {
+    grid-template-columns: 1fr;
+  }
+  .block-row {
+    align-items: flex-start;
+  }
+  .block-row .text-button {
+    flex-shrink: 0;
+  }
+  .block-row p {
+    font-size: .75rem;
+  }
+  .inline-label {
+    flex-wrap: wrap;
+  }
+  .inline-label select {
+    width: auto;
+  }
+  .role-label {
+    font-size: .75rem;
+  }
+  dialog {
+    margin: auto 0;
+    padding: 20px 18px;
+    width: 100%;
+    max-width: none;
+    max-height: 100dvh;
+    border-inline: 0;
+    border-radius: 0;
+  }
+  .modal-heading h2 {
+    font-size: 1.25rem;
+  }
+  .form-grid {
+    gap: 12px;
+  }
+  .demo-bank-card strong {
+    font-size: .95rem;
+    letter-spacing: 1px;
+  }
+  .demo-access .button-row {
+    gap: 8px;
+  }
+  .demo-access .button {
+    font-size: .75rem;
+    padding: 10px;
+  }
+  .checkout-recap>span {
+    font-size: .8125rem;
+  }
+}
+
+.time-slot small,.day small,.day>span,.overline,.accepted-payments>span,.accepted-payments>div,.summary-sport {
+  font-size: .75rem;
+}
+
+@media(max-width:560px) {
+  .time-slot small {
+    overflow-wrap: anywhere;
+  }
+  .sport-tabs button,.topbar nav a,.admin-tabs button {
+    font-size: .875rem;
+  }
+  .time-slot {
+    min-height: 64px;
+  }
+  .day {
+    min-height: 72px;
+  }
+  .week-arrow {
+    min-height: 44px;
+  }
+  .form-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after {
+    animation: none!important;
+    transition: none!important;
+    scroll-behavior: auto!important;
+  }
+}
+
+@media(max-width:350px) {
+  main {
+    padding-inline: 10px;
+  }
+  .day>span {
+    font-size: .65rem;
+  }
+}
