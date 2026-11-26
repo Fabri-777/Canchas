@@ -7,8 +7,12 @@
   <meta name="description" content="Encuentra tu cancha, elige tu horario y arma tu próxima pichanga. Reservas deportivas en Lima, Perú.">
   <title>Cancha — Tu próxima pichanga empieza aquí</title>
   <link rel="icon" href="./static/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./static/styles.css">
-  <script src="./static/app.js" type="module"></script>
+  <link rel="stylesheet" href="./static/css/base.css">
+  <link rel="stylesheet" href="./static/css/booking.css">
+  <link rel="stylesheet" href="./static/css/views.css">
+  <link rel="stylesheet" href="./static/css/modal.css">
+  <link rel="stylesheet" href="./static/css/responsive.css">
+  <script src="./static/js/main.js" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -17,11 +21,14 @@
     <nav aria-label="Navegación principal" id="navigation"></nav>
     <div class="account" id="account"></div>
   </header>
-  <div class="demo-banner"><span><strong>Demo universitaria</strong> · Tus datos se guardan solo en este navegador. Usa datos ficticios.</span><button class="text-button" id="reset-demo">Reiniciar demo</button></div>
+  <div class="demo-banner"><strong>Demo universitaria</strong> · Los datos se guardan en el servidor. Usa datos ficticios.</div>
+  <div class="offline-banner" id="offline-banner" role="status" hidden>Sin conexión a internet. Las reservas y los pagos requieren conexión.</div>
   <noscript>Activa JavaScript para usar esta demostración.</noscript>
-  <main id="main"><div class="loading-state">Preparando las canchas…</div></main>
+  <main id="main" tabindex="-1" aria-busy="true">
+    <div class="loading-state" role="status"><span class="spinner" aria-hidden="true"></span>Preparando las canchas…</div>
+  </main>
   <footer class="site-footer"><a class="brand small" href="#reservar">cancha<span class="brand-period">.</span></a><span>Hecho para quienes siempre quieren jugar.</span><span>Lima, Perú <span aria-hidden="true">🇵🇪</span> · Precios en soles</span></footer>
-  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   <dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
 </body>
 </html>

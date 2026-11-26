@@ -1,0 +1,269 @@
+dialog {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid #4a5841;
+  border-radius: 20px;
+  padding: 28px;
+  width: min(540px,calc(100vw - 28px));
+  max-height: 90dvh;
+  box-shadow: 0 30px 120px #0009;
+}
+
+dialog::backdrop {
+  background: #050a06c9;
+  backdrop-filter: blur(5px);
+}
+
+.modal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-heading h2 {
+  font-size: 1.4rem;
+  line-height: 1.35;
+}
+
+.icon-button {
+  border: 0;
+  background: #303b2b;
+  color: var(--text);
+  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.stack>label {
+  display: grid;
+  gap: 7px;
+  font-size: .875rem;
+}
+
+.stack input:not([type=radio]):not([type=checkbox]),select {
+  padding: 11px 13px;
+  border: 1px solid #687863;
+  background: #111910;
+  border-radius: 8px;
+  color: var(--text);
+  width: 100%;
+}
+
+.stack input:disabled {
+  color: var(--muted);
+}
+
+.stack input[type=file] {
+  font-size: .8125rem;
+}
+
+.stack .field-help,.stack .form-error {
+  margin: 0;
+}
+
+.form-error {
+  font-size: .875rem;
+  color: var(--danger);
+  margin: 0;
+}
+
+.form-error:empty {
+  position: absolute;
+}
+
+.demo-access {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.demo-access .button-row {
+  margin-top: 12px;
+}
+
+.demo-access .button {
+  flex: 1;
+}
+
+.checkout-recap {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  background: #121b11;
+  border-radius: 10px;
+  margin: 0 0 20px;
+}
+
+.checkout-recap>span {
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.checkout-recap>b {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-top: 5px;
+}
+
+.payment-choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 13px;
+  margin-top: 10px;
+  font-size: .875rem;
+  cursor: pointer;
+}
+
+.payment-choice:has(input:checked) {
+  border-color: var(--accent);
+  background: #28341f;
+}
+
+input[type=radio],input[type=checkbox] {
+  accent-color: var(--accent);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+
+legend {
+  font-size: .9rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.demo-bank-card {
+  display: grid;
+  gap: 22px;
+  background: linear-gradient(115deg,#42572f,#213322);
+  border: 1px solid #65764f;
+  border-radius: 14px;
+  padding: 26px;
+  margin: 20px 0;
+}
+
+.demo-bank-card>span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.demo-bank-card strong {
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+}
+
+.demo-bank-card small {
+  font-size: .7rem;
+  letter-spacing: 1px;
+  color: #c2d3b1;
+}
+
+.success-content {
+  text-align: center;
+}
+
+.success-check {
+  margin: 10px auto 20px;
+  background: var(--accent);
+  color: var(--ink);
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.success-check .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.success-content>strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+.success-content button {
+  margin-top: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 6px;
+  font-size: .875rem;
+}
+
+.checkbox-label {
+  display: flex!important;
+  align-items: center;
+  gap: 10px!important;
+}
+
+#toast:not(:empty) {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 14px 22px;
+  border: 1px solid #789151;
+  border-radius: 10px;
+  z-index: 100;
+  background: #2a3821;
+  color: #eaf4e3;
+  box-shadow: 0 10px 40px #0008;
+  font-size: .875rem;
+}
+
+.receipt-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  margin: auto;
+  object-fit: contain;
+}
+
+.payment-choice,.checkbox-label {
+  min-height: 44px;
+}
+
+.checkbox-label {
+  cursor: pointer;
+}
+
+.form-grid label {
+  min-width: 0;
+}
+
+#booking-confirmation .form-error:not(:empty) {
+  margin-top: 14px;
+}

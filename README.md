@@ -1,76 +1,85 @@
-# Cancha · Demo para GitHub Pages
+# Cancha · Reservas de canchas deportivas
 
-Proyecto universitario de gestión y reserva de canchas deportivas en Lima. Esta adaptación funciona con HTML, CSS y JavaScript: no necesita Python, Django, instalaciones ni un servidor de aplicación.
+Proyecto universitario de gestión y reserva de canchas deportivas en Lima.
+Stack: **FastAPI (Python) + HTML/CSS/JavaScript + MySQL**.
 
-## Publicar y obtener el enlace
-
-1. Crea un repositorio público en GitHub, por ejemplo `gestion-canchas`. También puedes usar uno existente.
-2. Descomprime el ZIP si descargaste la entrega comprimida.
-3. En tu repositorio, selecciona **Add file → Upload files** (o **uploading an existing file** si está vacío).
-4. Sube **el contenido** de esta carpeta: `index.html`, la carpeta `static` completa, `README.md` y `.nojekyll` si tu explorador lo muestra. No subas el ZIP. No subas la carpeta contenedora como un nivel adicional: `index.html` debe quedar en la raíz del repositorio.
-5. Pulsa **Commit changes**.
-6. Entra a **Settings → Pages**. En **Build and deployment → Source**, selecciona **Deploy from a branch**.
-7. Selecciona la rama **main**, la carpeta **/(root)** y pulsa **Save**. Si tu rama tiene otro nombre, selecciona la que contiene el archivo `index.html`.
-8. Espera a que termine la publicación. En esa misma sección aparecerá el enlace **Visit site**, normalmente con el formato `https://TU-USUARIO.github.io/gestion-canchas/`.
-
-No necesitas activar GitHub Actions manualmente ni configurar comandos de compilación. Si ya habías subido la versión Django, usa el `index.html` y la carpeta `static` de esta entrega; Pages debe apuntar a la raíz. La página estática no utiliza los archivos Python ni la base de datos original. Nunca subas `.local-secret`, `.env`, entornos `.venv`, bases de datos ni comprobantes personales.
-
-Guía oficial: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-
-## Cómo mostrarla en clase
-
-1. Abre tu enlace y pulsa **Ingresar → Soy cliente**. Entras como **Diego Ramírez** (`cliente@cancha.local`), sin contraseña.
-2. Elige una cancha, una fecha futura y un horario. Reserva y simula un pago con tarjeta o adjunta una imagen ficticia para transferencia.
-3. Pulsa **Salir**, luego **Ingresar → Soy administrador**. Entras como **Valeria Torres** (`admin@cancha.local`), sin contraseña.
-4. En el mismo navegador, revisa la reserva, abre el comprobante y aprueba el pago. También puedes editar canchas y tarifas, bloquear horarios y ver clientes.
-5. Vuelve a **Soy cliente** para consultar la confirmación en **Mis reservas** y **Notificaciones**.
-6. **Reiniciar demo** elimina los cambios de esta demo en este navegador, tras una confirmación, y recupera las cuentas y canchas de ejemplo.
-
-También puedes registrar una cuenta de prueba con un correo, nombre, celular peruano y contraseña ficticios. Esa cuenta existe únicamente en el navegador donde la creaste.
-
-## Funciones conservadas
-
-- Diseño original adaptable a computadoras y celulares, con la imagen de cancha original.
-- Registro, ingreso, salida y edición de perfil; accesos rápidos por rol.
-- Filtros por deporte, horarios de Perú y tarifas en soles.
-- Reservas de una hora, hasta 60 días de anticipación y prevención de horarios repetidos en el mismo almacenamiento del navegador.
-- Reserva pendiente durante un máximo de 15 minutos, sin superar el inicio del turno.
-- Pagos Visa/Mastercard simulados y comprobantes JPG/PNG de hasta 5 MB, reducidos para almacenamiento local.
-- Revisión administrativa, cancelación y reembolso simulado. El cliente cancela reservas confirmadas o en revisión con más de dos horas de anticipación; el administrador puede cancelarlas sin esa restricción.
-- Administración de canchas, tarifas, horarios, disponibilidad, bloqueos y clientes.
-- Confirmaciones, cancelaciones y recordatorios en una bandeja simulada.
-
-## Cómo se guardan los datos
-
-Los datos se guardan en `localStorage`, separados por ruta del sitio. Recargar o cerrar el navegador conserva las reservas, siempre que no borres sus datos. La sesión usa `sessionStorage`: una nueva pestaña puede iniciar una sesión diferente y consultar los mismos datos si pertenece al mismo navegador y sitio. La aplicación serializa cambios entre pestañas mediante Web Locks cuando está disponible.
-
-**Cada navegador o dispositivo tiene su propia demostración.** Tu profesor puede abrir el enlace con tu computadora apagada, pero verá su propia copia de los datos de ejemplo. Las reservas de tu computadora no se transfieren a su navegador. El modo incógnito pierde los datos al cerrar la sesión privada.
-
-No hay base de datos compartida, cobros, WhatsApp real ni envío de correos. Los permisos son una simulación de la interfaz, no una barrera de seguridad para datos reales. El acceso de administrador está disponible para quien use la demo. Usa exclusivamente datos e imágenes ficticios. Las contraseñas de prueba se guardan como hashes con sal mediante Web Crypto; esto no convierte la aplicación estática en un sistema de autenticación de producción.
-
-Los vencimientos y recordatorios se procesan al usar la página y cada minuto mientras permanece visible, sin un formulario abierto. Al volver a abrirla se actualizan los eventos pendientes. No se ejecuta ningún proceso con la página cerrada.
-
-El navegador limita el espacio local. Si se llena, la aplicación muestra un error en vez de afirmar que guardó el cambio. Puedes usar una imagen más pequeña o reiniciar la demo.
-
-## Archivos
+## Arquitectura
 
 ```text
-index.html
-.nojekyll
-README.md
-static/
-  app.js
-  demo-api.js
-  styles.css
-  favicon.svg
-  images/
-    cancha-nocturna.png
+navegador ──fetch/JSON──▶ FastAPI (routers) ──▶ service ──▶ repository ──▶ DAO ──▶ MySQL
+     ▲                                                                              │
+     └──────────────── JSON ◀── presenters ◀────────────────────────────────────────┘
 ```
 
-`app.js` contiene la interfaz adaptada y `demo-api.js` reemplaza las funciones de Django por operaciones locales. Todos los recursos propios usan rutas relativas para funcionar tanto en la raíz como bajo `/nombre-del-repositorio/`. Las fuentes de Google son opcionales: la interfaz conserva fuentes de respaldo.
+| Capa | Carpeta | Responsabilidad |
+|------|---------|-----------------|
+| Presentación | `index.html`, `static/` | Interfaz. JavaScript llama a la API con `fetch` y actualiza la lista sin recargar la página. |
+| API | `backend/api/` | Rutas HTTP, cookies de sesión, validación de tipos (Pydantic), errores en JSON `{"detail": "..."}`. |
+| Servicios | `backend/services/` | Reglas de negocio: horarios, pagos, cancelaciones, permisos. No conocen HTTP ni SQL. |
+| Repositorios | `backend/repositories/` | Entregan entidades de dominio (`Booking`, `Court`...) y combinan DAOs (una reserva y su pago se guardan juntos). |
+| DAO | `backend/dao/` | Único lugar con SQL. Un DAO por tabla (`BookingDAO`, `CourtDAO`...). |
+| Base de datos | `backend/db/` | Tablas (`tables.py`), motor y *Unit of Work*: una transacción por caso de uso. |
+| Dominio | `backend/domain/`, `backend/core/` | Entidades, errores de dominio, reloj de Lima y seguridad. |
 
-## Vista previa local opcional
+`backend/main.py` es la raíz de composición: crea el motor, arma los servicios y registra las rutas.
 
-GitHub Pages ejecuta la demo directamente al abrir el enlace. Para revisarla antes de publicar, sirve esta carpeta con un servidor estático como Live Server de VS Code, o con `python -m http.server 8000` desde esta carpeta si ya tienes Python instalado. Abre `http://localhost:8000`. No abras `index.html` con doble clic: utiliza módulos JavaScript y almacenamiento que requieren HTTP/HTTPS.
+## Puesta en marcha
 
-La carpeta original del proyecto Django se conserva aparte. Esta entrega empieza con los datos de ejemplo, no copia usuarios, reservas ni secretos de la base de datos original.
+### 1. MySQL (una sola vez, en MySQL Workbench)
+
+1. Abre Workbench y entra a tu conexión local como `root`.
+2. **File → Open SQL Script** → elige `database/setup_mysql.sql`.
+3. Ejecuta todo el script con el ícono del rayo ⚡.
+
+Esto crea la base `canchas` y el usuario `canchas_app` con contraseña `canchas123`. La app ya trae esos datos por defecto, así que **no necesitas `.env`**. Las tablas y los datos de ejemplo se crean solos al primer arranque.
+
+Si quieres otros valores, crea un `.env` opcional en la raíz:
+
+```ini
+DATABASE_URL=mysql+pymysql://canchas_app:canchas123@127.0.0.1:3306/canchas?charset=utf8mb4
+DEMO_MODE=true
+```
+
+### 2. Python
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+### 3. Ejecutar
+
+```powershell
+uvicorn backend.main:app --reload
+```
+
+- Aplicación: http://127.0.0.1:8000
+- Documentación interactiva de la API: http://127.0.0.1:8000/docs
+- Estado del servicio y la base de datos: http://127.0.0.1:8000/api/health
+
+### 4. Pruebas
+
+```powershell
+python -m pytest test.py -v
+```
+
+Los tests usan SQLite en memoria con las mismas tablas y DAOs, y un reloj controlado. No necesitan MySQL y no tocan tus datos.
+
+## Cuentas de demostración
+
+El modo demo viene **activado** por defecto, para presentar en clase (`DEMO_MODE=false` lo apaga). En **Ingresar** aparecen los botones **Soy cliente** (Diego Ramírez) y **Soy administrador** (Valeria Torres). También puedes registrar cuentas nuevas con contraseña.
+
+## Tolerancia a fallos
+
+- Si MySQL está caído, la app arranca igual: la API responde `503` con un mensaje claro y se recupera sola cuando vuelve la base de datos.
+- Cada caso de uso corre en una transacción: si algo falla a mitad de camino, no queda nada a medias.
+- Dos personas no pueden reservar el mismo horario: la reserva bloquea la fila de la cancha (`SELECT ... FOR UPDATE`) mientras verifica y guarda.
+- Las reservas sin pagar vencen a los 15 minutos y liberan el horario.
+- El frontend usa tiempo límite, reintentos en lecturas, avisa cuando no hay conexión y muestra estados de carga, vacío y error con botón para reintentar.
+
+## Seguridad
+
+- Contraseñas con PBKDF2-SHA256 y sal. Las sesiones viajan en una cookie `HttpOnly`, y en la base de datos solo se guarda el hash del token.
+- Los comprobantes se validan por su contenido real (firma JPG/PNG), no por la extensión, con un máximo de 5 MB.
+- Los pagos son **simulados**: no se piden ni se guardan datos de tarjetas. Usa solo datos e imágenes ficticios.
